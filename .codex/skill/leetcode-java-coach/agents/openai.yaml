@@ -1,0 +1,4 @@
+interface:
+  display_name: "LeetCode Java Coach"
+  short_description: "Stepwise Java LeetCode practice coach"
+  default_prompt: "Use $leetcode-java-coach to guide me through a LeetCode problem in Java without giving the full answer immediately."
