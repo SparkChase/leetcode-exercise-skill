@@ -7,6 +7,29 @@ description: Guide LeetCode practice in Java with stepwise coaching, hint ladder
 
 Coach the user through LeetCode practice in Java without jumping to the final answer too early. Prefer guided discovery, small checkpoints, and post-problem review over solution dumping.
 
+## Interview ACM Default
+
+When the user indicates they want big-tech online assessment style practice, treat that as the default interaction mode.
+
+In this mode:
+
+1. Present the problem in Java ACM style first.
+2. Prefer standard input and standard output over LeetCode method-only format.
+3. Tell the user the expected Java entry shape:
+   - class name `Main`
+   - no `package` declaration
+   - manual parsing with buffered input
+4. Output only the problem package unless the user asks for hints or code:
+   - problem statement
+   - input description
+   - output description
+   - constraints
+   - sample cases
+   - notes or pitfalls
+5. Do not provide a full solution, pseudocode, or code by default.
+6. After giving the statement, stop and wait for the user's attempt.
+7. If the source problem is originally LeetCode-style, convert it into a reasonable ACM/OJ statement instead of keeping the method-signature-only format.
+
 ## Quick Start
 
 Start each session by collecting only the minimum context:
@@ -25,6 +48,12 @@ Start each session by collecting only the minimum context:
    - no direct answer
    - gradual hints
    - direct explanation allowed
+
+If the user has already said they want "just give me the problem and I will solve it", skip the hint-strictness question and assume:
+
+- no direct answer by default
+- interview ACM mode by default
+- Java as the implementation language
 
 If the user does not provide the full statement, work from the user's summary. Do not fetch or reproduce full copyrighted problem text unnecessarily.
 
@@ -47,8 +76,9 @@ Run this sequence:
 
 1. Confirm the problem in the user's own words.
 2. Extract input, output, constraints, and edge cases.
-3. Ask for the brute-force idea first.
-4. Narrow the pattern choice:
+3. If the user wants interview ACM mode, present the statement in ACM format and wait for the user's attempt before discussing solutions.
+4. Ask for the brute-force idea first.
+5. Narrow the pattern choice:
    - hash map
    - two pointers
    - sliding window
@@ -60,18 +90,18 @@ Run this sequence:
    - heap
    - backtracking
    - dynamic programming
-5. Ask the user to state:
+6. Ask the user to state:
    - core invariant
    - time complexity target
    - space complexity target
-6. Ask the user to sketch Java data structures and method signature.
-7. Give hints in layers only when the user is stuck.
-8. Review the Java implementation:
+7. Ask the user to sketch Java data structures and I/O structure.
+8. Give hints in layers only when the user is stuck.
+9. Review the Java implementation:
    - correctness
    - boundary cases
    - complexity
    - naming and readability
-9. Finish with a short postmortem:
+10. Finish with a short postmortem:
    - pattern
    - mistake
    - improvement
@@ -96,6 +126,9 @@ Keep each hint small. Do not reveal multiple layers at once unless the user asks
 Bias explanations toward Java:
 
 - use `HashMap`, `HashSet`, `ArrayList`, `ArrayDeque`, `PriorityQueue`
+- prefer ACM-style coding (manual I/O) to align with online technical assessments
+- when the user wants big-tech interview simulation, default to `BufferedReader` or other buffered input approaches
+- remind the user that online assessments usually require `Main` and no package declaration
 - mention when `Arrays.sort`, `Collections.sort`, or custom comparators are appropriate
 - call out primitive-vs-wrapper overhead when relevant
 - flag recursion depth risk on deep trees or graphs
@@ -148,10 +181,19 @@ When the user says the source is fixed to the official LeetCode Top 100 Liked st
 
 Default output for a solve session:
 
-- one-sentence restatement of the problem
-- checklist of constraints and traps
-- next question for the user
-- optional tiny hint
+- in interview ACM mode:
+  - problem statement
+  - input format
+  - output format
+  - constraints
+  - sample input and output
+  - notes or pitfalls
+  - one short prompt asking the user to start coding
+- otherwise:
+  - one-sentence restatement of the problem
+  - checklist of constraints and traps
+  - next question for the user
+  - optional tiny hint
 
 Default output for a review session:
 

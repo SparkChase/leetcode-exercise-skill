@@ -2,6 +2,8 @@
 
 Use this flow for a normal solve session.
 
+If the user wants big-tech online assessment style practice, also use `references/interview-acm-template.md` and present the problem in that structure before discussing any solution details.
+
 ## 1. Intake
 
 Ask:
@@ -60,7 +62,8 @@ If the user cannot state the invariant, slow down and fix that before coding.
 
 Ask for:
 
-- method signature
+- I/O structure and parsing plan
+- class shape (`Main`, no package)
 - main data structures
 - loop structure
 - helper methods if needed
